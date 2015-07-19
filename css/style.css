@@ -1,0 +1,409 @@
+@charset "utf-8";
+
+body {
+    font-family: sans-serif;
+}
+
+/*nutral*/
+.inner {
+    width: 960px;
+    margin: 0 auto;
+}
+.white{
+    color:#fff;
+}
+
+.yellow{
+    color:#ffd61a;
+}
+.bg-yellow{
+    background-color:#ffd61a;
+}
+
+.orange{
+    color:#ff8340;
+}
+.bg-orange{
+    background-color:#ff8340;
+}
+/*----------------------
+ヘッダー
+-----------------------*/
+#header {
+    padding-top:20px;
+}
+    /*ロゴ*/
+    .logo{
+        position: relative;
+        float:left;
+    }
+    .logo>img{
+        position: absolute;
+        top:20px;
+    }
+    /*右側コメント*/
+    .note_wrap {
+        float:right;
+        margin-bottom: 20px;
+    }
+    .note_wrap >li{
+        margin-top:10px;
+        text-align: right;
+    }
+
+/*----------------------
+メインビジュアル内
+-----------------------*/
+#main_visual {
+    padding-bottom: 10px;
+    background: #ffd61a;
+}
+
+.catch {
+    padding-top: 20px;
+    font-size:24px;
+    line-height: 2;
+    text-align: center;
+}
+
+    /*スライダー*/
+    .slidesWrap {
+    }
+
+    .slider {
+        width: 100%;
+        overflow: hidden;
+        margin:40px auto 0;
+    }
+
+    .slides {
+        overflow: hidden;
+        height: 540px;    
+    }
+
+    .slides > li{
+        position: relative;
+        top:180px;
+        float:left;
+        margin-right:12px;
+    }
+
+    .slides >.center{
+        top:0;
+    }
+
+    /*グローバルナビ*/
+    .global_Nav {
+        margin-top: 60px;
+    }
+
+    .nav_item {
+        float:left;
+        width: 158px;
+        padding:17px 0;
+        border-right:solid 1px #4d4d4d;
+        text-align: center;
+        line-height: 1.5;
+        font-weight: bold;
+    }
+
+    .nav_item:first-child {
+        border-left:solid 1px #4d4d4d;
+    }
+
+    .nav_item >a {
+        display: block;
+    }
+    .nav_item.last{
+        width: 162px;
+        border:solid 1px #4d4d4d;
+    }
+
+    .nav_item.none{
+        border-right:none;
+    }
+/*-------------------------
+コンテンツ共通部分
+---------------------------*/
+.contents-box {
+    padding:60px 0;
+    text-align: center;    
+}
+
+.contents-heading{
+    padding: 80px 0 40px;
+}
+
+/*各セクションのタイトル部分*/
+.section-title{
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+/*各セクションタイトル部分直下テキスト*/
+.section-note{
+
+}
+.contents-summary {
+    line-height: 2;
+    margin-top:40px;
+}
+
+/*-------------------------
+ニュース
+---------------------------*/
+.news-list{
+    width:600px;
+    margin:0 auto;
+    padding:40px 0 22px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.news-list--date{
+    float:left;
+    margin-right: 40px;
+}
+
+.news-note__more{
+    width: 600px;
+    margin:0 auto;
+    text-align: right;
+}
+.news-note__more>a {
+    text-decoration: underline;
+}
+
+
+/*-------------------------
+feature
+---------------------------*/
+.feature-list{
+    margin: 60px auto 0;
+    text-align: left;
+}
+.feature-list>li{
+    float:left;
+    width:300px;
+    margin-right:30px;
+    line-height: 1.5;
+}
+
+.feature-list>li.last{
+    margin-right:0;
+}
+
+.point-heading{
+    float:left;
+    width:90px;
+    margin-right: 10px;
+    text-align: center;
+    font-size:18px;
+}
+
+.point-heading+p{
+    line-height: 1.5;
+}
+
+.point-count{
+    display: block;
+    font-size:96px;
+    line-height: 1.2;
+}
+
+.point-topics {
+    display: block;
+    margin-bottom:10px;
+    font-size:24px;
+}
+
+/*-------------------------
+concept
+---------------------------*/
+.contents-catch{
+    font-size:24px;
+    margin:68px 0 78px;
+    font-weight: bold;
+}
+
+/*-------------------------
+コース
+---------------------------*/
+.cource-list>li{
+    margin-top:30px;
+}
+
+.cource-cap{
+    float:left;
+    width: 500px;
+    margin-right:10px;
+    text-align: center;
+}
+.cource-cap-reverse {
+    float:right;
+    width: 500px;
+    text-align: center;
+}
+
+.cource-summary{
+    float:left;
+    width: 400px;
+}
+
+.cource-summary-reverse{
+    float:left;
+    width: 400px;
+    margin-left:50px;
+}
+
+.cource-summary>h4,.cource-summary-reverse>h4{
+    margin-top:40px;
+}
+
+.cource-summary>p,.cource-summary-reverse>p{
+    margin-top:40px;
+    line-height: 2;
+    text-align: left;
+}
+
+/*-------------------------
+ギャラリー
+---------------------------*/
+.gallery-list{
+    width:700px;
+    margin: 0 auto;
+    padding:60px 0 0;
+}
+
+.gallery-list>li{
+    float:left;
+    margin-right:20px;
+    margin-bottom: 10px;
+}
+
+.gallery-list .no-white-space{
+    margin-right: 0;
+}
+
+
+/*--------------------------
+footerlist
+--------------------------*/
+.entry-summary {
+    margin-top:40px;
+    line-height: 2;
+}
+
+.entry-btn {
+    display: block;
+    appearance:none;
+    -webkit-appearance:none;
+    background-color: rgb(255, 131, 64);
+    border:none;
+    width: 399px;
+    margin:30px auto 0;
+    padding:21px 0;
+}
+
+.entry-btn-title{
+    font-size:24px;
+    font-weight: bold;
+}
+
+.entry-btn-note{
+    margin-top:10px;
+    color:#fff;
+}
+
+/*------------------------
+footer
+------------------------*/
+#information {
+    background: rgb(123, 122, 122) ;
+}
+
+.footer-list-wrap {
+    margin-top:20px;
+}
+
+.footer-list-wrap >li{
+    width:300px;
+    float:left;
+    margin-right:20px;
+}
+
+.footer-caution{
+    margin-top: 10px;
+    text-align: left;
+    line-height: 1.5;
+    color: #fff;
+}
+
+/*-------------------------
+ニュース下層
+---------------------------*/
+.nav_lower{
+    padding-bottom: 10px;
+}
+
+
+.news_lower_heading{
+    padding:60px 0;
+    background-color:#ffd61a;
+    background-image: url(../image/cheese_kunsei.png);
+    background-repeat:no-repeat;
+    background-size: 10%;
+    background-position: 870px;
+}
+
+.section-heading-wrap {
+    float:left;
+    margin-left:40px;
+    text-align: center;
+}
+.news_list{
+    margin:40px auto;
+    padding-left:60px;
+}
+
+.news_list  > li {
+    float:left;
+    margin-right: 36px;
+    margin-bottom: 40px;
+}
+.news-date{
+    margin-top:22px;
+}
+
+.news-title {
+    margin-top:16px;
+}
+
+.news_tags {
+    float:right;
+    text-transform: uppercase;
+    color:#ffd61a;
+}
+
+/*読み込むボタン*/
+.btn-reading{
+    display: block;
+    appearance:none;
+    -webkit-appearance:none;
+    width: 260px;
+    margin: 0 auto;
+    padding:20px;
+    border:none;
+    text-align: center;
+    color:#fff;
+    background-color: rgb(255, 214, 26);
+    font-size:21px;
+    transition:0.5s all;
+    -webkit-transition:0.5s all;
+    -moz-transition:0.5s all;
+    -ms-transition:0.5s all;
+    -o-transition:0.5s all;
+}
+
+.btn-reading:hover{
+    background:rgb(255, 131, 64);
+}
