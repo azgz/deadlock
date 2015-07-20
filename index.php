@@ -9,10 +9,12 @@ $view = "";
 // SQLの結果から、HTMLを生成
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $news_id = $result['news_id'];
-    $news_title = $result['news_title'];
-    $create_date = $result['create_date'];
+    // 特殊文字チェックを追加
+    $news_title = htmlspecialchars($result['news_title'], ENT_QUOTES);
+    $create_date = htmlspecialchars($result['create_date'], ENT_QUOTES);
     $view .= '<dt class="news-list--date">' . $create_date . '</dt>'
-    		. '<dd class="news-list--note"><a href=news.php?news_id="' . $news_id . '">' . $news_title .'</a></dd>';
+            // 遷移先へのパラメータは""で囲む必要がないため修正
+            . '<dd class="news-list--note"><a href=news.php?news_id=' . $news_id . '>' . $news_title .'</a></dd>';
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +32,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
         $(window).on("ready resize",function(){
         $(".slides").css({"width":1440,
                          "position":"relative",
-                          left:-(1440-$(window).width())/2
+                          // キーが""で囲まれていなかったため修正
+                          "left":-(1440-$(window).width())/2
                          });
         });
     });
@@ -79,9 +82,8 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
                 </ul>
             </nav>
         </div>
-        
     </section>
-    
+
     <!--news    -->
     <section id="news" class="contents-box">
         <h2 class="section-title yellow">NEWS</h2>
@@ -90,10 +92,11 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
             <dl class="news-list clearfix">
 <?php echo $view ?>
             </dl>
-            <p class="news-note__more"><a href="news.html">ニュース一覧を見る</a></p>
+            <!-- link先が作成されていないため一時的に#を設定 -->
+            <p class="news-note__more"><a href="#">ニュース一覧を見る</a></p>
         </div>
     </section>
-    
+
     <!--#feature-->
     <section id="feature" class="contents-box bg-orange">
         <h2 class="section-title white">FEATURE</h2>
@@ -128,7 +131,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
     </section>
     <!--end #feature-->
-    
+
     <!--#concept    -->
     <section id="concept" class="contents-box">
         <h2 class="section-title yellow">CONCEPT</h2>
@@ -164,7 +167,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
         <p class="contents-summary">さあ、まもなく【CHEESE】への扉がひらかれます。</p>
     </section>
     <!--end #concept-->
-    
+
     <!--#cource    -->
     <section id="gallery" class="contents-box">
         <div class="contents-heading bg-yellow">
@@ -186,7 +189,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
                             週末集中型の初心者対象のチーズ職人養成講座です。
                             週末集中型の初心者対象のチーズ職人養成講座です。
                             週末集中型の初心者対象のチーズ職人養成講座です。
-                        </p> 
+                        </p>
                     </div>
                 </li>
                 <li class="clearfix">
@@ -201,9 +204,9 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
                             週末集中型の初心者対象のチーズ職人養成講座です。
                             週末集中型の初心者対象のチーズ職人養成講座です。
                             週末集中型の初心者対象のチーズ職人養成講座です。
-                        </p> 
+                        </p>
                     </div>
-                </li>     
+                </li>
             </ul>
         </div>
     </section>
@@ -248,7 +251,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
         </button>
     </section>
     <!--end #entry-->
-    
+
     <!--#information-->
     <section id="information" class="contents-box">
         <h2 class="section-title">INFORMATION</h2>
@@ -264,7 +267,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
         </div>
     </section>
     <!--end #information-->
-    
+
 </div>
 </body>
 </html>
