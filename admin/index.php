@@ -4,7 +4,7 @@ session_start();
 
 // 非ログイン時は、login.php へリダイレクト
 if (!isset($_SESSION["STATUS"])) {
-	header('location: login.php?error=notlogin');
+    header('location: login.php?error=notlogin');
 }
 
 require_once '../conf/config.php';
@@ -17,15 +17,18 @@ $view = "";
 
 // SQLの結果から、HTMLを生成
 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
-	$news_id = $result['news_id'];
-	$news_title = $result['news_title'];
-	$news_headline = $result['news_headline'];
-	$news_detail = $result['news_detail'];
-	$update_date = $result['update_date'];
-	$create_date = $result['create_date'];
-	$view .= '<ul><li>'. $news_id . '</li><li>'. $news_title . '</li><li>' . $news_headline . '</li><li>' 
-			. $news_detail . '</li><li>' . $update_date . '</li></li><li>' 
-			. $create_date . '</li><li><a href="update.php?id=' . $news_id . '">更新</a></li></ul>';
+    $news_id = $result['news_id'];
+    // 特殊文字チェックを追加
+    $news_title = htmlspecialchars($result['news_title'], ENT_QUOTES);
+    $news_headline = htmlspecialchars($result['news_headline'], ENT_QUOTES);
+    $news_detail = htmlspecialchars($result['news_detail'], ENT_QUOTES);
+    $update_date = htmlspecialchars($result['update_date'], ENT_QUOTES);
+    $create_date = htmlspecialchars($result['create_date'], ENT_QUOTES);
+    $view .= '<ul><li>'. $news_id . '</li><li>'. $news_title . '</li><li>' . $news_headline . '</li><li>'
+            // </li>が余分なため修正
+            . $news_detail . '</li><li>' . $update_date . '</li><li>'
+            // 遷移先へのパラメータキーを修正
+            . $create_date . '</li><li><a href="update.php?news_id=' . $news_id . '">更新</a></li></ul>';
 }
 ?>
 <!DOCTYPE html>
@@ -37,21 +40,21 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
 <body>
 <h2>Cheese CMS | 管理画面Top</h2>
 <div>
-	<ul>
-		<li>ニュースid</li>
-		<li>ニュースタイトル</li>
-		<li>ニュースヘッドライン</li>
-		<li>ニュース詳細</li>
-		<li>更新時間</li>
-		<li>登録時間</li>
-	</ul>
-	<!-- データベースの取得結果はここで表示 -->
-	<?php echo $view ?>
+    <ul>
+        <li>ニュースid</li>
+        <li>ニュースタイトル</li>
+        <li>ニュースヘッドライン</li>
+        <li>ニュース詳細</li>
+        <li>更新時間</li>
+        <li>登録時間</li>
+    </ul>
+    <!-- データベースの取得結果はここで表示 -->
+    <?php echo $view ?>
 </div>
 <div>
-	<ul>
-		<li><a href="regist.php">ニュースを登録する</a></li>
-	</ul>
+    <ul>
+        <li><a href="regist.php">ニュースを登録する</a></li>
+    </ul>
 </div>
 </body>
 </html>

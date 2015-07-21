@@ -4,18 +4,19 @@ session_start();
 
 // 非ログイン時は、login.php へリダイレクト
 if (!isset($_SESSION["STATUS"])) {
-	header('location: login.php?error=notlogin');
+    header('location: login.php?error=notlogin');
 }
 
 require_once '../conf/config.php';
 
 // index.phpからnews_idが渡ってくるので、取得
-$news_id = $_POST["news_id"];
+// 遷移元からGETでパラメータが渡されているため修正
+$news_id = $_GET["news_id"];
 
 // news_idに数値以外が入ってきたら、エラー
 if(!is_numeric($news_id)) {
-	header('location: index.php?error=id');
-	exit;
+    header('location: index.php?error=news_id');
+    exit;
 }
 
 // SQLを実行し、DBから該当idのデータを取得
@@ -41,6 +42,8 @@ $news_detail = $result['news_detail'];
 </head>
 <body>
 <form method="post" action="update_execute.php">
+<!-- news_idをフォーム内で保持するように修正-->
+<input type="hidden" name="news_id" value="<?php echo $news_id ?>">;
 <p>ニュースタイトル:<input type="text" name="news_title" size="64" value="<?php echo $news_title ?>"></p>
 <p>ニュースヘッドライン:<input type="text" name="news_headline" size="128" value="<?php echo $news_headline ?>"></p>
 <p>ニュース詳細</p>
@@ -49,9 +52,9 @@ $news_detail = $result['news_detail'];
 </form>
 
 <div>
-	<ul>
-		<li><a href="index.php">Topに戻る</a></li>
-	</ul>
+    <ul>
+        <li><a href="index.php">Topに戻る</a></li>
+    </ul>
 </div>
 </body>
 </html>

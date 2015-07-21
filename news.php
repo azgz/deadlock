@@ -6,16 +6,18 @@ $news_id = $_GET["news_id"];
 
 // SQLを実行し、DBから一覧を取得
 $pdo = new PDO(DSN, DB_USER, DB_PASS);
-$stmt = $pdo->prepare("SELECT * FROM cheeese_news WHERE news_id = :news_id");
+// テーブル名が間違っていたため修正
+$stmt = $pdo->prepare("SELECT * FROM cheese_news WHERE news_id = :news_id");
 $stmt->bindParam(':news_id', $news_id);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // SQLの結果から、HTML出力用の変数を定義
-$news_title = $result['news_title'];
-$news_headline = $result['news_headline'];
-$news_detail = $result['news_detail'];
-$create_date = $result['create_date'];
+// 特殊文字チェックを追加
+$news_title = htmlspecialchars($result['news_title'], ENT_QUOTES);
+$news_headline = htmlspecialchars($result['news_headline'], ENT_QUOTES);
+$news_detail = htmlspecialchars($result['news_detail'], ENT_QUOTES);
+$create_date = htmlspecialchars($result['create_date'], ENT_QUOTES);
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +34,8 @@ $create_date = $result['create_date'];
         $(window).on("ready resize",function(){
         $(".slides").css({"width":1440,
                          "position":"relative",
-                          left:-(1440-$(window).width())/2
+                          // キーが""で囲まれていなかったため修正
+                          "left":-(1440-$(window).width())/2
                          });
         });
     });
@@ -68,7 +71,7 @@ $create_date = $result['create_date'];
                 </nav>
             </div>
         </section>
-    
+
         <!--news_lower    -->
         <section id="news_lower">
             <div class="news_lower_heading">
@@ -82,17 +85,17 @@ $create_date = $result['create_date'];
 
             <div class="inner">
                 <ul class="news_list clearfix">
-                    <li> 
+                    <li>
                     <dl>
-	                    <dt class="news-date clearfix"><span class="news_tags"><?php echo $news_title ?></span></dt>
-	                    <dd class="news-title">概要：<?php echo $news_headline ?></dd>
-	                    <dd class="news-title">詳細：<?php echo $news_detail	 ?></dd>
-	                    </dl>
+                        <dt class="news-date clearfix"><span class="news_tags"><?php echo $news_title ?></span></dt>
+                        <dd class="news-title">概要：<?php echo $news_headline ?></dd>
+                        <dd class="news-title">詳細：<?php echo $news_detail     ?></dd>
+                        </dl>
                     </li>
                 </ul>
             </div>
         </section>
-   
+
         <!--#entry    -->
         <section id="entry" class="contents-box">
             <div class="contents-heading bg-yellow">
@@ -107,7 +110,7 @@ $create_date = $result['create_date'];
             </a>
         </section>
         <!--end #entry-->
-    
+
         <!--#information    -->
         <section id="information" class="contents-box">
             <h2 class="section-title white">INFORMATION</h2>
