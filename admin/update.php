@@ -7,10 +7,11 @@ if (!isset($_SESSION["STATUS"])) {
 	header('location: login.php?error=notlogin');
 }
 
+//設定の読み込み
 require_once '../conf/config.php';
 
 // index.phpからnews_idが渡ってくるので、取得
-$news_id = $_POST["news_id"];
+    $news_id = isset($_GET["news_id"]) ? intval($_GET["news_id"]): 0;
 
 // news_idに数値以外が入ってきたら、エラー
 if(!is_numeric($news_id)) {
@@ -20,7 +21,7 @@ if(!is_numeric($news_id)) {
 
 // SQLを実行し、DBから該当idのデータを取得
 $pdo = new PDO(DSN, DB_USER, DB_PASS);
-$stmt = $pdo->prepare("SELECT * FROM cheese_news WHERE news_id = :news_id");
+$stmt = $pdo->prepare('SELECT * FROM cheese_news WHERE news_id = :news_id');
 $stmt->bindParam(':news_id', $news_id);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -45,6 +46,7 @@ $news_detail = $result['news_detail'];
 <p>ニュースヘッドライン:<input type="text" name="news_headline" size="128" value="<?php echo $news_headline ?>"></p>
 <p>ニュース詳細</p>
 <textarea name="news_detail" cols=128 rows=10><?php echo $news_detail ?></textarea>
+<input type="hidden" name="news_id" value="<?=$news_id?>">
 <p><input type="submit" value="更新"></p>
 </form>
 

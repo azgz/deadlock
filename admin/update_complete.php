@@ -1,3 +1,13 @@
+<?php
+// セッションからログインステータスをチェック
+session_start();
+
+// 非ログイン時は、login.php へリダイレクト
+if (!isset($_SESSION["STATUS"])) {
+	header('location: login.php?error=notlogin');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>

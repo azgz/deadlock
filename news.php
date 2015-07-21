@@ -6,7 +6,7 @@ $news_id = $_GET["news_id"];
 
 // SQLを実行し、DBから一覧を取得
 $pdo = new PDO(DSN, DB_USER, DB_PASS);
-$stmt = $pdo->prepare("SELECT * FROM cheeese_news WHERE news_id = :news_id");
+$stmt = $pdo->prepare('SELECT * FROM cheese_news WHERE news_id = :news_id');
 $stmt->bindParam(':news_id', $news_id);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);

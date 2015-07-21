@@ -25,7 +25,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
 	$create_date = $result['create_date'];
 	$view .= '<ul><li>'. $news_id . '</li><li>'. $news_title . '</li><li>' . $news_headline . '</li><li>' 
 			. $news_detail . '</li><li>' . $update_date . '</li></li><li>' 
-			. $create_date . '</li><li><a href="update.php?id=' . $news_id . '">更新</a></li></ul>';
+			. $create_date . '</li><li><a href="update.php?news_id=' . $news_id . '">更新</a></li></ul>';
 }
 ?>
 <!DOCTYPE html>

@@ -12,7 +12,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $news_title = $result['news_title'];
     $create_date = $result['create_date'];
     $view .= '<dt class="news-list--date">' . $create_date . '</dt>'
-    		. '<dd class="news-list--note"><a href=news.php?news_id="' . $news_id . '">' . $news_title .'</a></dd>';
+    		. '<dd class="news-list--note"><a href=news.php?news_id=' . $news_id . '>' . $news_title .'</a></dd>';
 }
 ?>
 <!DOCTYPE html>
@@ -90,7 +90,7 @@ while ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
             <dl class="news-list clearfix">
 <?php echo $view ?>
             </dl>
-            <p class="news-note__more"><a href="news.html">ニュース一覧を見る</a></p>
+            <!--<p class="news-note__more"><a href="news.html">ニュース一覧を見る</a></p>-->
         </div>
     </section>
     
